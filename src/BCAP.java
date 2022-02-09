@@ -85,6 +85,7 @@ public class BCAP {
         return true;
     }
 
+//    Tìm tổng số tín chỉ lớn nhất trong các kỳ học
     public int maxSumPeriod(){
         int maxSum = 0;
         for(int i=0; i< results.size(); i++){
@@ -125,14 +126,27 @@ public class BCAP {
         }
     }
 
+    public boolean checkInput(){
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                if(prerequisites[i][j] == prerequisites[j][i] && prerequisites[i][j] == 1){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         BCAP bcap = new BCAP();
         bcap.input();
-        for(int i=0; i< bcap.m; i++){
-            Vector<Integer> v = new Vector<>();
-            bcap.results.add(v);
+        if(bcap.checkInput()){
+            for(int i=0; i< bcap.m; i++){
+                Vector<Integer> v = new Vector<>();
+                bcap.results.add(v);
+            }
+            bcap.BACP(0);
         }
-        bcap.BACP(0);
         System.out.println(bcap.ans);
     }
 }
